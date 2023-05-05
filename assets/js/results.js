@@ -204,18 +204,29 @@ heartBtnResults.addEventListener("click", function (event) {
     const currentId = localStorage.getItem("titleId");
     currentTitleId = JSON.parse(currentId)
 
-    const likedArray = localStorage.getItem("likedMovieArray");
-    likedMovieList = JSON.parse(likedArray);
 
-    // checking if the movie is already in the liked list, so it isn't added twice
-    var inArray = false;
-    for (var i = 0; i < likedMovieList.length; i++) {
-        if (currentTitleId.id === likedMovieList[i][0].id) {
-            var inArray = true;
+    if (localStorage.getItem("likedMovieArray") != null) {
+        const likedArray = localStorage.getItem("likedMovieArray");
+        likedMovieList = JSON.parse(likedArray);
+
+        // checking if the movie is already in the liked list, so it isn't added twice
+        var inArray = false;
+        for (var i = 0; i < likedMovieList.length; i++) {
+            if (currentTitleId.id === likedMovieList[i][0].id) {
+                var inArray = true;
+            }
         }
-    }
+        if (inArray === false) {
+            // so we just need to store titleName with the titleID
+            let storeLikedMovie = [{
+                name: show.title,
+                id: currentTitleId.id
+            }]
+            likedMovieArray.push(storeLikedMovie);
 
-    if (inArray === false) {
+            localStorage.setItem("likedMovieArray", JSON.stringify(likedMovieArray));
+        }
+    } else {
         // so we just need to store titleName with the titleID
         let storeLikedMovie = [{
             name: show.title,
@@ -225,12 +236,6 @@ heartBtnResults.addEventListener("click", function (event) {
 
         localStorage.setItem("likedMovieArray", JSON.stringify(likedMovieArray));
     }
-    // }
-    // for else {
-    //         
-    //     }
-
-
 });
 
 // on page load, likedMoviearray (local storage) gets pushed to empty array

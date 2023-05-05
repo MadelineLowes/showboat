@@ -124,42 +124,44 @@ heartBtnHome.addEventListener("click", function (event) {
     event.preventDefault();
     const likedArray = localStorage.getItem("likedMovieArray");
     likedMovieList = JSON.parse(likedArray)
-    for (i = 0; i < likedMovieList.length; i++) {
-        let movie = likedMovieList[i][0].name;
-        let li = document.createElement("li");
-        li.textContent = movie;
-        li.onclick = function () {
-            for (i = 0; i < likedMovieList.length; i++) {
-                if (movie === likedMovieList[i][0].name) {
-                    let titleId = {
-                        id: likedMovieList[i][0].id
+    if (likedMovieList.length > 0) {
+        for (i = 0; i < likedMovieList.length; i++) {
+            let movie = likedMovieList[i][0].name;
+            let li = document.createElement("li");
+            li.textContent = movie;
+            li.onclick = function () {
+                for (i = 0; i < likedMovieList.length; i++) {
+                    if (movie === likedMovieList[i][0].name) {
+                        let titleId = {
+                            id: likedMovieList[i][0].id
+                        }
+                        localStorage.setItem("titleId", JSON.stringify(titleId));
+                        fetchById();
                     }
-                    localStorage.setItem("titleId", JSON.stringify(titleId));
-                    fetchById();
-                }
-            }
-        }
-
-        li.setAttribute("data-index", i);
-        let button = document.createElement("button");
-        button.textContent = "X";
-        button.setAttribute('class', 'removeBtn')
-        button.onclick = function () {
-            document.getElementById("liked-list").removeChild(li);
-            for (i = 0; i < likedMovieList.length; i++) {
-                if (movie === likedMovieList[i][0].name) {
-                    const indexOfObject = i;
-                    likedMovieList.splice(indexOfObject, 1);
                 }
             }
 
-            localStorage.setItem("likedMovieArray", JSON.stringify(likedMovieList));
-        }
+            li.setAttribute("data-index", i);
+            let button = document.createElement("button");
+            button.textContent = "X";
+            button.setAttribute('class', 'removeBtn')
+            button.onclick = function () {
+                document.getElementById("liked-list").removeChild(li);
+                for (i = 0; i < likedMovieList.length; i++) {
+                    if (movie === likedMovieList[i][0].name) {
+                        const indexOfObject = i;
+                        likedMovieList.splice(indexOfObject, 1);
+                    }
+                }
 
-        li.appendChild(button);
-        document.getElementById("liked-list").appendChild(li);
-        movieModal.style.display = "block";
-    };
+                localStorage.setItem("likedMovieArray", JSON.stringify(likedMovieList));
+            }
+
+            li.appendChild(button);
+            document.getElementById("liked-list").appendChild(li);
+            movieModal.style.display = "block";
+        }
+    }
 });
 
 window.addEventListener("click", function (event) {
