@@ -53,5 +53,14 @@ Max Schwartz
 - email: max@marbl.app
 - github profile: https://github.com/The-Schwiz
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-
+[contributors-shield]: https://img.shields.io/github/contributors/MadelineLowes/showboat.svg?style=for-the-badge
+[contributors-url]: https://github.com/MadelineLowes/showboat/graphs/contributors
+[issues-shield]: https://img.shields.io/github/issues/MadelineLowes/showboat.svg?style=for-the-badge
+[issues-url]: https://github.com/MadelineLowes/showboat/issues
+[license-shield]: https://img.shields.io/github/license/MadelineLowes/showboat.svg?style=for-the-badge
+[license-url]: https://github.com/MadelineLowes/showboat/blob/main/LICENSE
+[github-shield]: https://img.shields.io/badge/-github-black.svg?style=for-the-badge&logo=github&colorB=555
+[github-url]: https://github.com/MadelineLowes/showboat
